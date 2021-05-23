@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,6 +23,7 @@ public class Controller {
     private final ArrayList<DDoSThread> threads = new ArrayList<>();
     private final AtomicBoolean running = new AtomicBoolean(true);
     public Label errorLabel;
+    ObservableList<String> list = FXCollections.observableArrayList();
 
     public void startAttack(ActionEvent actionEvent) {
         HttpURLConnection connection;
@@ -35,9 +38,10 @@ public class Controller {
 
             // if connection succeeded create a new DDoSThread and start attack
             errorLabel.setText("");
+            logText.setItems(list);
             for (int i = 0; i < 100; i++) {
                 try {
-                    DDoSThread thread = new DDoSThread(urlText.getText(), portText.getText(), logText, running);
+                    DDoSThread thread = new DDoSThread(urlText.getText(), portText.getText(), list, running);
                     thread.start();
                     threads.add(thread);
                 } catch (Exception e) {

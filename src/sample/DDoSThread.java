@@ -1,9 +1,7 @@
 package sample;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -14,20 +12,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class DDoSThread extends Thread {
     public AtomicBoolean running;
     private final URL url;
-    ListView<String> logText;
-
-    ObservableList<String> list = FXCollections.observableArrayList();
+    ObservableList<String> list;
 
     String param;
 
-    public DDoSThread(String url, String port, ListView<String> logText, AtomicBoolean running) throws Exception {
+    public DDoSThread(String url, String port, ObservableList<String> list, AtomicBoolean running) throws Exception {
         // create new url from the input fields
         String request = url + port;
         this.url = new URL(request);
-        this.logText = logText;
+        this.list = list;
         this.running = running;
         param = "param1=" + URLEncoder.encode("87845", "UTF-8");
-        logText.setItems(list);
     }
 
 
