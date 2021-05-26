@@ -8,6 +8,13 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
+
+/*
+* Nathnael Yewondwosen ATR/3174/10
+* Bereket Zemed ATR/7417/10
+* Moti Dinsa ATR/2366/10
+* */
+
 public class Main extends Application {
 
     public static void main(String... args) {
